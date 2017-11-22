@@ -1,8 +1,9 @@
 # 알게된 용어
-메쏘드 레퍼런스 :: (이 메소드를 값으로 사용하라는 의미)
+* Reactive Programming
 
 # 모르는 용어
-런타임 풋프린트
+* Reactive Stream
+* backpressure
 
 # 모르는 개념
-런타임 풋프린트 덕분에 왜 인기를 끌고 있나
+* Servlet 3.1 Non-Blocking IO API

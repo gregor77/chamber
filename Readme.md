@@ -9,59 +9,29 @@ fork를 해 가시면 제가 주기적으로 확인해서 SDSACT 내의 Hyperbol
 
 SDS ACT 정신과 시간의 방 : https://github.com/SDSACT/hyperbolic_time_chamber 
 
-## 1. Java8 in Action
+## Reactor for building non-blocking application
+스프링5 릴리즈되면서 [webflux](https://docs.spring.io/spring-framework/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html) 모듈이 추가되었고 
+reactive 웹어플리케이션을 구현할 수 있게 되었다. 현재 프로젝트에서 개발중인 서버는 최대 10만대 디바이스가 접속할 수 있고 최대의 처리량을 낼 수 있는 고성능 서버를 만드는 것을 목표로 한다.
+현재 java8에 CompletableFuture 기반의 비동기 처리를 적용 중이다.
+#### Reactive Mongo DB 적용
+DB connection의 blocking call 제거를 통한 비동기 기반의 API 구현
+- [ReactiveMongoTemplate](https://github.com/spring-projects/spring-data-mongodb/blob/master/src/main/asciidoc/reference/reactive-mongodb.adoc)
+- [ReactiveMongoRepository](https://github.com/spring-projects/spring-data-mongodb/blob/master/src/main/asciidoc/reference/reactive-mongo-repositories.adoc)
 
-### 1.1. 자바 8 개론
+#### CompletableFuture 를 Flux 대체
+CompletableFuture 와 Flux 를 비교하여 장점 확인 후 대체
+- Mono 0..1
+- Flux 0..N
 
-#### 새로 들어온 개념
-- 스트림 API 
-- behavior parameterization(함수를 매개변수로 던지기) 
-- 병렬성과 공유 가변 데이터
-
-
-#### 자바 함수
-전달할 수 없는 구조체는 이급 시민이다. 자바8은 이급 시민을 일급 시민으로 바꿀 수 있다.
-
-메쏘드를 람다로 하는 좋은 예
-```Java
-package chamber;
-
-import java.io.File;
-import java.io.FileFilter;
-
-public class Chapter1 {
-    public static void main(String args[]){
-        hiddenfile();
-        hiddenfileLambda();
-    }
-
-    public Chapter1() {
-    }
-
-    static void hiddenfile(){
-        System.out.println("############ hiddenfile()" );
-        File [] hiddenFiles = new File(".").listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.isHidden();
-            }
-        });
-        for(int i=0;i<hiddenFiles.length;i++){
-            System.out.println(hiddenFiles[i].getAbsolutePath());
-        }
-    }
-    static void hiddenfileLambda(){
-        System.out.println("############ hiddenfileLambda()" );
-        for (File file : new File(".").listFiles(File::isHidden)) {
-            System.out.println(file.getAbsolutePath());
-        }
-    }
-}
-```
-
-메쏘드 레퍼런스 :: (이 메소드를 값으로 사용하라는 의미)  - 기존 클래스의 메소드를 함수화 할 수 있다는 의미. 이 경우는 메소드를 일급값으로 사용함.
-
-람다의 경우는 익명함수를 함수값으로 취급함. 람다의 예로 뭐가 좋을까 생각해 보면 필터 만큼 좋은 예제가 없음.
-
-
-
+## 커리큘럼
+| Seq |    날짜    |             내용             |  비고  |
+|:---:|:----------:|:----------------------------:|:------:|
+|  1  | 2017/11/21 | Java8 Functional Programming | Stream |
+|  2  | 2017/11/22 | Java8 CompletableFuture      |        |
+|  3  | 2017/11/23 | Java8 vs RxJava vs Reactore  |        |
+  
+## 참고 자료
+* [Comparing java8 vs RxJava vs Reactor](http://alexsderkach.io/comparing-java-8-rxjava-reactor/)
+* [Project reactor document](https://projectreactor.io/docs/core/release/reference/)
+* [Why Reactor vs RxJava2](https://www.infoq.com/articles/reactor-by-example)
+* [Reactor Bismuth is out](https://spring.io/blog/2017/09/28/reactor-bismuth-is-out)
