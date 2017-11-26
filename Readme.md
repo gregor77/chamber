@@ -26,9 +26,10 @@ CompletableFuture 와 Flux 를 비교하여 장점 확인 후 대체
 ## 커리큘럼
 | Seq |    날짜    |             내용             |  비고  |
 |:---:|:----------:|:----------------------------:|:------:|
-|  1  | 2017/11/21 | Java8 Functional Programming | Stream |
-|  2  | 2017/11/22 | Java8 CompletableFuture      |        |
-|  3  | 2017/11/23 | Java8 vs RxJava vs Reactore  |        |
+|  1  | 2017/11/23 | Java8 vs RxJava vs Reactor   |        |
+|  2  | 2017/11/26 | [Java8 Stream reduce](https://github.com/gregor77/chamber/blob/master/reactive/README.md)  | parallelStream() work combine |
+|  3  | 2017/11/27 | Java8 CompletableFuture      |        |
+|  4  | 2017/11/28 | Java8 vs RxJava vs Reactore  |        |
   
 ## 참고 자료
 * [Comparing java8 vs RxJava vs Reactor](http://alexsderkach.io/comparing-java-8-rxjava-reactor/)
