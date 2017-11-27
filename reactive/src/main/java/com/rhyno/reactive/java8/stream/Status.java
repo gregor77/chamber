@@ -6,6 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class Status {
+    private String id;
     private boolean panelOn;
     private boolean panelOff;
     private boolean powerOff;
