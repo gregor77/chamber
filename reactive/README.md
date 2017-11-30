@@ -68,12 +68,38 @@ parallelization의 접근은 만능 해결책이 아니다 하드웨어의 전�
  
 어떻께 JVM위에서 비동기 코드를 작성할 수 있나? 자바는 비동기 프로그래밍을 위한 두 가지 모델을 제공한다.
 * **Callbacks**
+  - 비동기 메소드는 리턴 값이 없지만 결과를 사용할 수 있을때 호출되는 추가 callback 파라미터를 사용한다.
+  - 잘 알려진 예제는 Swing의 EventListener 계층 구조다
 * **Futures**
+  - 비동기 메소드는 Future<T>를 즉시 리턴한다 비동기 프로세스는 T 값을 계산하지 Future 객체는 계산값에 접근할 수 있게 wrapping 한다
+  - 값을 즉시 사용할 수 없으며 값을 사용할 때까지 객체를 폴링 할 수 있다.
+  - 예를 들어 Callable <T> 작업을 실행하는 ExecutorService는 Future 객체를 사용한다
 
 이러한 방법으로 충분한가? 모든 유즈 케이스에 해당하는 것은 아니며 두 가지 접근 방법 모두에 한계가 있다.
 Callback은 함께 작성하기 어렵고, 읽기 및 유지가 어려운 코드로 빠르게 이어진다.(소위 "콜백 지옥"이라고 한다)
 
 Callback과 Future를 사용한 코드는 Reacotr에 제공하는 api를 통해서 더 쉽게 작성할 수 있다.
+
+## 3.3 명령형 프로그래밍에서 반응형 프로그래밍으로
+Reactor 같은 Reactive 라이브러리는 JVM에서 "고전적인" 비동기 방식의 이러한 단점을 해결하는 동시에
+몇 가지 추가 측면에 초점을 맞추고 있다.
+* Composability(합성성) and readablity(가독성)
+* 풍부한 연산자의 풍부한 어휘로 조작된 데이터
+* subscribe 할때까지 아무 일도 일어나지 않는다
+* backpressure 또는 consumer가 배출량이 너무 높음을 producer에게 알릴 수 있는 능력
+* 동시성에 의존하지 않는 높은 수준이지만 높은 가치의 추상화
+
+### 3.3.6 Hot vs Cold
+반응성 라이브러리의 Rx 계열에서 반응성 시퀀스의 두 가지 범주인 Hot, Cold것을 구별할 수 있다 이러한 구분은
+반응성 스트림이 subscribe와 어떻게 반응하지와 관련 있다
+
+* 데이터 소스를 포함하여 각 subscriber에 대해 Cold 시퀀스가 새로 시작된다. 소스가 HTTP 호출을 랩하면 각
+subscription에 대해 새 HTTP 요청이 작성된다
+
+* Hot sequence는 각 subscriber에 대해 처음부터 시작되지 않는다. 오히려 늦은 구독자는 가입한 후 방출되는
+신호를 받는다. 그러나 일부 고 반응성 스트림은 전체 또는 부분적으로 배출 기록을 캐쉬하거나 재생할 수 있다
+일반적인 관점에서 볼 때 구독자가 없는 경우 핫 시퀀스를 내보낼 수도 있다 ("구독하기 전에는 아무 일도 일어나지 않는다" 규칙) 
+
 
 ## 참고 자료
 * [Reactor by example](https://www.infoq.com/articles/reactor-by-example)
