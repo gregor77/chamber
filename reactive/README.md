@@ -101,6 +101,25 @@ subscription에 대해 새 HTTP 요청이 작성된다
 일반적인 관점에서 볼 때 구독자가 없는 경우 핫 시퀀스를 내보낼 수도 있다 ("구독하기 전에는 아무 일도 일어나지 않는다" 규칙) 
 
 
+# 4. Reactor core
+## Reactor의 Type
+* Flux, Asynchronous Sequences of 0-N Items
+* Mono, Asynchronous 0-1 Result
+
+## Subscribe Item
+작업중
+
+## Programmatically creating a sequence
+### Generate
+generate() 메소드를 사용하여 Flux를 생성하는 방법을 테스트 케이스를 통해서 알아보자. generate 메소드를 사용하면 state를 기반으로
+Flux를 생성할 수 있다. 또한 AtomicLong 객체를 사용하여 mutuable한 state를 생성할 수 있다. 또한 Consumer 함수를 사용하는 경우
+가장 마지막의 state를 알 수 있다. **마지막 state를 알 수 있는 경우, 프로세스가 끝나는 시점에 db connection을 종료하거나 프로세스가 
+끝나는 시점의 프로세스를 수행할 수 있는 장점이 있다.**
+
+* 예제 : [FluxGenerateTest.java]()
+* state based generate
+* mutable state variant
+
 ## 참고 자료
 * [Reactor by example](https://www.infoq.com/articles/reactor-by-example)
 * [Reactor document](https://projectreactor.io/docs/core/release/reference/#getting-started)

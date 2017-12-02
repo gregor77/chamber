@@ -30,6 +30,8 @@ CompletableFuture 와 Flux 를 비교하여 장점 확인 후 대체
 |  2  | 2017/11/26 | [Java8 Stream reduce](https://github.com/gregor77/chamber/blob/master/reactive/README.md)  | parallelStream() work combine |
 |  3  | 2017/11/27 | stream vs parallelStream     |        |
 |  4  | 2017/11/28 | [Concept of Reactive programming](https://github.com/gregor77/chamber/blob/master/reactive/README.md)   |        |
+|  5  | 2017/12/03 | [Reactor core - create Flux with Generate]()   |        |
+  
   
 ## 참고 자료
 * [Comparing java8 vs RxJava vs Reactor](http://alexsderkach.io/comparing-java-8-rxjava-reactor/)
