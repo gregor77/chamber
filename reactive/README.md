@@ -116,7 +116,7 @@ Flux를 생성할 수 있다. 또한 AtomicLong 객체를 사용하여 mutuable�
 가장 마지막의 state를 알 수 있다. **마지막 state를 알 수 있는 경우, 프로세스가 끝나는 시점에 db connection을 종료하거나 프로세스가 
 끝나는 시점의 프로세스를 수행할 수 있는 장점이 있다.**
 
-* 예제 : [FluxGenerateTest.java]()
+* 예제 : [FluxGenerateTest.java](https://github.com/gregor77/chamber/blob/master/reactive/src/test/java/com/rhyno/reactive/reactor/basic/FluxGenerateTest.java)
 * state based generate
 * mutable state variant
 
